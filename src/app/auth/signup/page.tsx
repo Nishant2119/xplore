@@ -30,12 +30,12 @@ export default function SignUpPage() {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Username Field */}
         <div className="space-y-1.5">
-          <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">Username</label>
+          <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">Name</label>
           <input
             type="text"
             name="username"
             required
-            placeholder="alex_explorer"
+            placeholder="Name"
             value={formData.username}
             onChange={handleChange}
             className="w-full bg-slate-950/80 border border-slate-800 rounded-2xl px-4 py-3 text-base sm:text-xs text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"
