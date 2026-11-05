@@ -1,0 +1,79 @@
+'use client';
+
+import React, { useState } from 'react';
+import Link from 'next/link';
+import AuthLayout from '../_components/AuthLayout';
+
+export default function LoginPage() {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Login submitted:', formData);
+  };
+
+  return (
+    <AuthLayout
+      title="Welcome Back"
+      subtitle="Log in to access your saved spots, maps, and exploration stats."
+      footerText="Don't have an account?"
+      footerLinkText="Create account"
+      footerHref="/auth/signup"
+    >
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Email Field */}
+        <div className="space-y-1.5">
+          <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">Email Address</label>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="alex@example.com"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full bg-slate-950/80 border border-slate-800 rounded-2xl px-4 py-3 text-base sm:text-xs text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"
+
+          />
+        </div>
+
+        {/* Password Field */}
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between">
+            <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">Password</label>
+            <Link
+              href="/auth/forgot-password"
+              className="text-[10px] font-semibold text-emerald-400 hover:underline"
+            >
+              Forgot password?
+            </Link>
+          </div>
+          <input
+            type="password"
+            name="password"
+            required
+            placeholder="••••••••"
+            value={formData.password}
+            onChange={handleChange}
+            className="w-full bg-slate-950/80 border border-slate-800 rounded-2xl px-4 py-3 text-base sm:text-xs text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"
+
+          />
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full mt-2 py-3.5 bg-linear-to-r from-emerald-400 to-teal-500 hover:from-emerald-300 hover:to-teal-400 active:scale-[0.98] text-slate-950 font-extrabold text-xs rounded-2xl shadow-lg shadow-emerald-500/25 transition duration-200 cursor-pointer"
+        >
+          Log In
+        </button>
+      </form>
+    </AuthLayout>
+  );
+}
